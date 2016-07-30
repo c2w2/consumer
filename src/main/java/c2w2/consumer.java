@@ -27,7 +27,7 @@ public class consumer {
         ExecutorService executor = Executors.newFixedThreadPool(NUM_THREADS);
         for (final KafkaStream<byte[], byte[]> stream : streams) {
             executor.execute(new Runnable() {
-                @Override
+                
                 public void run() {
                     for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
                         System.out.println(new String(messageAndMetadata.message()));
