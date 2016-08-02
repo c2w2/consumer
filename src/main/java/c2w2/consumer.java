@@ -47,12 +47,14 @@ public class consumer {
         					
         				}
         				}
-        			
+        		
         			
         			});
+        		System.out.println("finish");
+        			
         	}
         	
-        	System.out.println(result1);
+        	
         	
         	Thread.sleep(60000);
         	consumer.shutdown();
