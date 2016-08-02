@@ -44,6 +44,7 @@ public class consumer {
         					String tmp = new String(messageAndMetadata.message());
         					result1 += Integer.parseInt(tmp);
         					
+        					
         				}
         				}
         			
@@ -51,7 +52,7 @@ public class consumer {
         			});
         	}
         	
-        	
+        	System.out.println(result1);
         	
         	Thread.sleep(60000);
         	consumer.shutdown();
@@ -75,7 +76,7 @@ public class consumer {
         		});
         	}
         	
-        	
+        	System.out.println(result2);
         	Thread.sleep(60000);
         	consumer.shutdown();
         	executor.shutdown();
@@ -101,7 +102,7 @@ public class consumer {
         		});
         	}
         	
-        	
+        	System.out.println(result3);
         	Thread.sleep(60000);
         	consumer.shutdown();
         	executor.shutdown();
