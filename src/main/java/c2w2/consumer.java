@@ -73,7 +73,7 @@ public class consumer {
         	for (final KafkaStream<byte[], byte[]> stream : streams) {
         		executor.execute(new Runnable() {
                 
-        			public void run() {
+        			public synchronized void run() {
         				for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
         					String tmp = new String(messageAndMetadata.message());
         					System.out.println(tmp);
@@ -100,7 +100,7 @@ public class consumer {
         	for (final KafkaStream<byte[], byte[]> stream : streams) {
         		executor.execute(new Runnable() {
                 
-        			public void run() {
+        			public synchronized void run() {
         				for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
         					String tmp = new String(messageAndMetadata.message());
         					System.out.println(tmp);
