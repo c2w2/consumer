@@ -43,7 +43,7 @@ public class consumer {
         				for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
         					String tmp = new String(messageAndMetadata.message());
         					
-        					System.out.println(tmp);
+        					System.out.println(Integer.parseInt(tmp)+100);
         					
         					result1 += Integer.parseInt(tmp);
         					
