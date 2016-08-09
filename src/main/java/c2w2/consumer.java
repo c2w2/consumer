@@ -14,11 +14,11 @@ public class consumer {
     private static final String TOPIC1 = "topic1";
     private static final String TOPIC2 = "topic2";
     private static final String TOPIC3 = "topic3";
-    public static int result1=0;
-    public static int result2=0;
-    public static int result3=0;
+    public static long result1=0;
+    public static long result2=0;
+    public static long result3=0;
     private static final int NUM_THREADS = 20;
-    public static void main(String[] args) throws Exception {
+    public static long main(String[] args) throws Exception {
       
     	
     	Properties props = new Properties();
@@ -53,15 +53,16 @@ public class consumer {
         		
         			
         			});
-        		System.out.println("finish");
+        		
         			
         	}
         	
         	
-        	System.out.println("result1 = " + result1);
         	Thread.sleep(60000);
+ 
         	consumer.shutdown();
         	executor.shutdown();
+        	return result1;
         }else if(args[0].equals("2"))
         {
         	topicCountMap.put(TOPIC2, NUM_THREADS);
@@ -83,12 +84,11 @@ public class consumer {
         		});
         	}
         	
-        	System.out.println("result2 = " + result2);
         	Thread.sleep(60000);
         	Thread.sleep(60000);
         	consumer.shutdown();
         	executor.shutdown();
-        
+        	return result2;
         	
         }else if(args[0].equals("3"))
         {
@@ -112,16 +112,16 @@ public class consumer {
         		});
         	}
         	
-        	System.out.println("result3 = " + result3);
+        	
         	Thread.sleep(60000);
         	Thread.sleep(60000);
         	consumer.shutdown();
         	executor.shutdown();
-        
-        	
+        	return result3;
         }
     	
-    	
+    	 return 0;
     
 }
+   
 }
