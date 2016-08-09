@@ -18,9 +18,9 @@ public class consumer {
     public static long result2=0;
     public static long result3=0;
     private static final int NUM_THREADS = 20;
-    public static long main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
       
-    	
+    	int result =0;
     	Properties props = new Properties();
        	props.put("group.id", "test-group");
        	props.put("zookeeper.connect", "kafka1:2181,kafka2:2181,kafka3:2181");
@@ -37,9 +37,8 @@ public class consumer {
     		List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(TOPIC1);
         	ExecutorService executor = Executors.newFixedThreadPool(NUM_THREADS);
         	for (final KafkaStream<byte[], byte[]> stream : streams) {
-        		executor.execute(new Runnable() {
+        		
                 
-        			public void run() {
         				for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
         					String tmp = new String(messageAndMetadata.message());
         					
@@ -48,11 +47,10 @@ public class consumer {
         					result1 += Integer.parseInt(tmp);
         					
         					
-        				}
+        		
         				}
         		
         			
-        			});
         		
         			
         	}
@@ -62,7 +60,7 @@ public class consumer {
  
         	consumer.shutdown();
         	executor.shutdown();
-        	return result1;
+        	
         }else if(args[0].equals("2"))
         {
         	topicCountMap.put(TOPIC2, NUM_THREADS);
@@ -71,24 +69,20 @@ public class consumer {
         	List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(TOPIC2);
         	ExecutorService executor = Executors.newFixedThreadPool(NUM_THREADS);
         	for (final KafkaStream<byte[], byte[]> stream : streams) {
-        		executor.execute(new Runnable() {
-                
-        			public void run() {
-        				for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
+        		for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
         					String tmp = new String(messageAndMetadata.message());
         					System.out.println(tmp);
         					
         					result2 += Integer.parseInt(tmp);
         				}
-        			}
-        		});
+        			
         	}
         	
         	Thread.sleep(60000);
         	Thread.sleep(60000);
         	consumer.shutdown();
         	executor.shutdown();
-        	return result2;
+        	
         	
         }else if(args[0].equals("3"))
         {
@@ -98,18 +92,14 @@ public class consumer {
         	List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(TOPIC3);
         	ExecutorService executor = Executors.newFixedThreadPool(NUM_THREADS);
         	for (final KafkaStream<byte[], byte[]> stream : streams) {
-        		executor.execute(new Runnable() {
-                
-        			public void run() {
-        				for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
+        			for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
         					String tmp = new String(messageAndMetadata.message());
         					System.out.println(tmp);
         					
         					result3 += Integer.parseInt(tmp);
 
-        				}
-        			}
-        		});
+        				
+        		}
         	}
         	
         	
@@ -117,10 +107,9 @@ public class consumer {
         	Thread.sleep(60000);
         	consumer.shutdown();
         	executor.shutdown();
-        	return result3;
-        }
+         }
     	
-    	 return 0;
+ 
     
 }
    
