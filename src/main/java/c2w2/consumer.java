@@ -56,7 +56,7 @@ public class consumer {
         		
         			
         	}
-        	
+        	System.out.println("result1 : "+result1);
         	
         	Thread.sleep(60000);
  
@@ -82,7 +82,7 @@ public class consumer {
         			}
         		});
         	}
-        	
+        	System.out.println("result2 : "+result2);
         	Thread.sleep(60000);
         	Thread.sleep(60000);
         	consumer.shutdown();
@@ -109,7 +109,7 @@ public class consumer {
         			}
         		});
         	}
-        	
+        	System.out.println("result3 : "+result3);
         	
         	Thread.sleep(60000);
         	Thread.sleep(60000);
