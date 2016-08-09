@@ -18,7 +18,7 @@ public class consumer {
     public static long result2=0;
     public static long result3=0;
     private static final int NUM_THREADS = 20;
-    public static long main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
       
     	
     	Properties props = new Properties();
@@ -62,7 +62,7 @@ public class consumer {
  
         	consumer.shutdown();
         	executor.shutdown();
-        	return result1;
+      
         }else if(args[0].equals("2"))
         {
         	topicCountMap.put(TOPIC2, NUM_THREADS);
@@ -88,7 +88,7 @@ public class consumer {
         	Thread.sleep(60000);
         	consumer.shutdown();
         	executor.shutdown();
-        	return result2;
+       
         	
         }else if(args[0].equals("3"))
         {
@@ -117,10 +117,9 @@ public class consumer {
         	Thread.sleep(60000);
         	consumer.shutdown();
         	executor.shutdown();
-        	return result3;
+       
         }
     	
-    	 return 0;
     
 }
    
