@@ -42,6 +42,9 @@ public class consumer {
         			public void run() {
         				for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
         					String tmp = new String(messageAndMetadata.message());
+        					
+        					System.out.println(tmp);
+        					
         					result1 += Integer.parseInt(tmp);
         					
         					
@@ -72,6 +75,8 @@ public class consumer {
         			public void run() {
         				for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
         					String tmp = new String(messageAndMetadata.message());
+        					System.out.println(tmp);
+        					
         					result2 += Integer.parseInt(tmp);
         				}
         			}
@@ -98,6 +103,8 @@ public class consumer {
         			public void run() {
         				for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
         					String tmp = new String(messageAndMetadata.message());
+        					System.out.println(tmp);
+        					
         					result3 += Integer.parseInt(tmp);
 
         				}
