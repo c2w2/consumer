@@ -14,10 +14,13 @@ public class consumer {
     private static final String TOPIC1 = "topic1";
     private static final String TOPIC2 = "topic2";
     private static final String TOPIC3 = "topic3";
-    public static long result1=0;
-    public static long result2=0;
-    public static long result3=0;
-    private static final int NUM_THREADS = 20;
+    
+
+    public static int result1=0;
+    public static int result2=0;
+    public static int result3=0;
+  
+    private static final int NUM_THREADS = 1;
     public static void main(String[] args) throws Exception {
       
     	
@@ -29,6 +32,9 @@ public class consumer {
         ConsumerConnector consumer = Consumer.createJavaConsumerConnector(consumerConfig);
         Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
              
+        
+        
+        
     	if(args[0].equals("1"))
         { 
     		topicCountMap.put(TOPIC1, NUM_THREADS);
@@ -46,6 +52,8 @@ public class consumer {
         			
         					
         					result1 += Integer.parseInt(tmp);
+        					
+        					System.out.println(result1);
         					
         					
         				}
