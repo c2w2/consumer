@@ -62,7 +62,7 @@ public class consumer {
     	}
     	
     	
-   
+    	Thread.sleep(6000);
     	
     	System.out.println("result : "+result4);
     	
@@ -118,9 +118,10 @@ public class consumer {
         	}
         	
         	
-        	
+        	Thread.sleep(6000);
         
         	System.out.println("result1 : "+result1);
+        	
         	Thread.sleep(1000);
         	fuction();
         	
@@ -151,7 +152,7 @@ public class consumer {
         			}
         		});
         	}
-         
+        	Thread.sleep(6000);
           	 System.out.println("result2 : "+result2);
           	 
          	KeyedMessage<String, String> message = new KeyedMessage<String, String>("topic4", String.valueOf(result2));  
@@ -182,7 +183,7 @@ public class consumer {
         		});
         	}
           
-        	
+        	Thread.sleep(6000);
           	 System.out.println("result3 : "+result3);
          	KeyedMessage<String, String> message = new KeyedMessage<String, String>("topic4", String.valueOf(result3));  
     		producer.send(message);
