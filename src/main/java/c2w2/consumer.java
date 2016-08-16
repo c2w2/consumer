@@ -106,7 +106,7 @@ public class consumer {
         					
         			
         					
-        					result1 += Integer.parseInt(tmp);
+        					result1 +=(int)(Math.sqrt(Integer.parseInt(tmp)));
         				
         					
         				}
@@ -148,7 +148,7 @@ public class consumer {
         				for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
         					String tmp = new String(messageAndMetadata.message());
         					
-        					result2 += Integer.parseInt(tmp);
+        					result2 += (int)(Math.sqrt(Integer.parseInt(tmp)));
         				}
         			}
         		});
@@ -177,7 +177,7 @@ public class consumer {
         				for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
         					String tmp = new String(messageAndMetadata.message());
         					
-        					result3 += Integer.parseInt(tmp);
+        					result3 += (int)(Math.sqrt(Integer.parseInt(tmp)));
 
         				}
         			}
