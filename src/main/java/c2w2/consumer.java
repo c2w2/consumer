@@ -76,8 +76,10 @@ public class consumer {
         	
         	Thread.sleep(6000);
         	System.out.println("result1 : "+result1);
+        	
         	KeyedMessage<String, String> message = new KeyedMessage<String, String>("topic4", String.valueOf(result1));  
     		producer.send(message);
+    		
         	consumer.shutdown();
         	executor.shutdown();
       
@@ -103,7 +105,7 @@ public class consumer {
           	Thread.sleep(6000);
           	 System.out.println("result2 : "+result2);
           	 
-         	KeyedMessage<String, String> message = new KeyedMessage<String, String>("topic4", String.valueOf(result1));  
+         	KeyedMessage<String, String> message = new KeyedMessage<String, String>("topic4", String.valueOf(result2));  
     		producer.send(message);
     		
         	consumer.shutdown();
@@ -132,7 +134,7 @@ public class consumer {
         	}
           	Thread.sleep(6000);
           	 System.out.println("result3 : "+result3);
-         	KeyedMessage<String, String> message = new KeyedMessage<String, String>("topic4", String.valueOf(result1));  
+         	KeyedMessage<String, String> message = new KeyedMessage<String, String>("topic4", String.valueOf(result3));  
     		producer.send(message);
         	consumer.shutdown();
         	executor.shutdown();
