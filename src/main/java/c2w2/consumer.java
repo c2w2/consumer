@@ -64,10 +64,11 @@ public class consumer {
         		
         			
         	}
-        	System.out.println("result1 : "+result1);
+        	
+        	
         	
         	Thread.sleep(60000);
- 
+ System.out.println("result1 : "+result1);
         	consumer.shutdown();
         	executor.shutdown();
       
