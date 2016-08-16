@@ -25,7 +25,7 @@ public class consumer {
     public static int result4=0;
     private static final int NUM_THREADS = 1;
     
-    public static void fuction()
+    public static void fuction () throws Exception
     {
     	Properties props = new Properties();
        	props.put("group.id", "test-group");
@@ -62,7 +62,8 @@ public class consumer {
     	}
     	
     	
-    
+    	Thread.sleep(6000);
+        
     	
     	System.out.println("result : "+result4);
     	
