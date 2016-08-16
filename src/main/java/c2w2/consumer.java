@@ -62,7 +62,7 @@ public class consumer {
     	}
     	
     	
-    	Thread.sleep(6000);
+    
     	
     	System.out.println("result : "+result4);
     	
