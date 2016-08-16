@@ -121,12 +121,12 @@ public class consumer {
         	
         
         	System.out.println("result1 : "+result1);
-        	
+        	Thread.sleep(1000);
         	fuction();
         	
         	KeyedMessage<String, String> message = new KeyedMessage<String, String>("topic4", String.valueOf(result1));  
     		producer.send(message);
-    		Thread.sleep(30000);
+    		
     		
     		
         	consumer.shutdown();
