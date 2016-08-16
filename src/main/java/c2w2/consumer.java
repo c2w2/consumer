@@ -67,7 +67,7 @@ public class consumer {
         	
         	
         	
-        	Thread.sleep(60000);
+        	Thread.sleep(6000);
  System.out.println("result1 : "+result1);
         	consumer.shutdown();
         	executor.shutdown();
