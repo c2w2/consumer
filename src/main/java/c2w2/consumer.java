@@ -91,9 +91,8 @@ public class consumer {
         			}
         		});
         	}
-        	System.out.println("result2 : "+result2);
-        	Thread.sleep(60000);
-        	Thread.sleep(60000);
+          	Thread.sleep(6000);
+          	 System.out.println("result2 : "+result2);
         	consumer.shutdown();
         	executor.shutdown();
        
@@ -118,10 +117,8 @@ public class consumer {
         			}
         		});
         	}
-        	System.out.println("result3 : "+result3);
-        	
-        	Thread.sleep(60000);
-        	Thread.sleep(60000);
+          	Thread.sleep(6000);
+          	 System.out.println("result3 : "+result3);
         	consumer.shutdown();
         	executor.shutdown();
        
