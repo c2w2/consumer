@@ -24,6 +24,51 @@ public class consumer {
     public static int result3=0;
     public static int result4=0;
     private static final int NUM_THREADS = 1;
+    
+    public static void fuction()
+    {
+    	Properties props = new Properties();
+       	props.put("group.id", "test-group");
+       	props.put("zookeeper.connect", "kafka1:2181,kafka2:2181,kafka3:2181");
+        props.put("auto.commit.interval.ms", "1000");
+        ConsumerConfig consumerConfig = new ConsumerConfig(props);
+        ConsumerConnector consumer = Consumer.createJavaConsumerConnector(consumerConfig);
+        Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
+        
+    	topicCountMap.put(TOPIC4, NUM_THREADS);
+		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
+
+		List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(TOPIC4);
+    	ExecutorService executor = Executors.newFixedThreadPool(NUM_THREADS);
+    	for (final KafkaStream<byte[], byte[]> stream : streams) {
+    		executor.execute(new Runnable() {
+            
+    			public synchronized void run() {
+    				for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
+    					String tmp = new String(messageAndMetadata.message());
+    					
+    			
+    					
+    					result4 += Integer.parseInt(tmp);
+    				
+    					
+    				}
+    				}
+    		
+    			
+    			});
+    		
+    			
+    	}
+    	
+    	
+   
+    	
+    	System.out.println("result : "+result4);
+    	
+    	consumer.shutdown();
+    	executor.shutdown();
+    }
     public static void main(String[] args) throws Exception {
       
     	
@@ -74,50 +119,18 @@ public class consumer {
         	
         	
         	
-        	Thread.sleep(6000);
+        
         	System.out.println("result1 : "+result1);
+        	
+        	fuction();
         	
         	KeyedMessage<String, String> message = new KeyedMessage<String, String>("topic4", String.valueOf(result1));  
     		producer.send(message);
     		Thread.sleep(30000);
     		
-    		topicCountMap.put(TOPIC4, NUM_THREADS);
     		
-    		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap2 = consumer.createMessageStreams(topicCountMap);
-
-    		List<KafkaStream<byte[], byte[]>> streams2 = consumerMap2.get(TOPIC4);
-        	ExecutorService executor2 = Executors.newFixedThreadPool(NUM_THREADS);
-        	for (final KafkaStream<byte[], byte[]> stream : streams) {
-        		executor2.execute(new Runnable() {
-                
-        			public synchronized void run() {
-        				for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
-        					String tmp = new String(messageAndMetadata.message());
-        					
-        			
-        					
-        					result4 += Integer.parseInt(tmp);
-        				
-        					
-        				}
-        				}
-        		
-        			
-        			});
-        		
-        			
-        	}
-        	
-        	
-        	
-        	
-        	Thread.sleep(6000);
-        	
-        	System.out.println("result : "+result4);
-        	
         	consumer.shutdown();
         	executor.shutdown();
-        	executor2.shutdown();
       
         }else if(args[0].equals("2"))
         {
@@ -138,7 +151,7 @@ public class consumer {
         			}
         		});
         	}
-          	Thread.sleep(6000);
+         
           	 System.out.println("result2 : "+result2);
           	 
          	KeyedMessage<String, String> message = new KeyedMessage<String, String>("topic4", String.valueOf(result2));  
@@ -168,7 +181,8 @@ public class consumer {
         			}
         		});
         	}
-          	Thread.sleep(6000);
+          
+        	
           	 System.out.println("result3 : "+result3);
          	KeyedMessage<String, String> message = new KeyedMessage<String, String>("topic4", String.valueOf(result3));  
     		producer.send(message);
