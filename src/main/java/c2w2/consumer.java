@@ -79,9 +79,45 @@ public class consumer {
         	
         	KeyedMessage<String, String> message = new KeyedMessage<String, String>("topic4", String.valueOf(result1));  
     		producer.send(message);
+    		Thread.sleep(30000);
     		
+    		topicCountMap.put(TOPIC4, NUM_THREADS);
+    		
+    		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap2 = consumer.createMessageStreams(topicCountMap);
+
+    		List<KafkaStream<byte[], byte[]>> streams2 = consumerMap2.get(TOPIC4);
+        	ExecutorService executor2 = Executors.newFixedThreadPool(NUM_THREADS);
+        	for (final KafkaStream<byte[], byte[]> stream : streams) {
+        		executor2.execute(new Runnable() {
+                
+        			public synchronized void run() {
+        				for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
+        					String tmp = new String(messageAndMetadata.message());
+        					
+        			
+        					
+        					result4 += Integer.parseInt(tmp);
+        				
+        					
+        				}
+        				}
+        		
+        			
+        			});
+        		
+        			
+        	}
+        	
+        	
+        	
+        	
+        	Thread.sleep(6000);
+        	
+        	System.out.println("result : "+result4);
+        	
         	consumer.shutdown();
         	executor.shutdown();
+        	executor2.shutdown();
       
         }else if(args[0].equals("2"))
         {
@@ -141,41 +177,7 @@ public class consumer {
        
         }else if(args[0].equals("4"))
         { 
-    		topicCountMap.put(TOPIC4, NUM_THREADS);
-    		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
-
-    		List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(TOPIC4);
-        	ExecutorService executor = Executors.newFixedThreadPool(NUM_THREADS);
-        	for (final KafkaStream<byte[], byte[]> stream : streams) {
-        		executor.execute(new Runnable() {
-                
-        			public synchronized void run() {
-        				for (MessageAndMetadata<byte[], byte[]> messageAndMetadata : stream) {
-        					String tmp = new String(messageAndMetadata.message());
-        					
-        			
-        					
-        					result4 += Integer.parseInt(tmp);
-        				
-        					
-        				}
-        				}
-        		
-        			
-        			});
-        		
-        			
-        	}
-        	
-        	
-        	
-        	
-        	Thread.sleep(6000);
-        	
-        	System.out.println("result : "+result4);
-        	
-        	consumer.shutdown();
-        	executor.shutdown();
+    	
       
         }
     	
